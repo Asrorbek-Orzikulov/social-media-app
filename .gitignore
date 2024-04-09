@@ -1,0 +1,6 @@
+# IDE files
+*__pycache__*
+*.DS_Store*
+
+# App secrets
+.env
