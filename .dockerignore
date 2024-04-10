@@ -1,0 +1,21 @@
+# build & cache files
+**/*__pycache__
+**/*.DS_Store
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.Python
+**/*.cache
+**/*nosetests.xml
+**/*coverage.xml
+**/*.cover
+**/*.log
+.mypy_cache
+.pytest_cache
+
+# unnecessary project files 
+.git
+.gitignore
+.hypothesis
+.env
+docker-compose.yml
