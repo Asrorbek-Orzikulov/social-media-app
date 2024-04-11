@@ -12,7 +12,7 @@ ENV POETRY_NO_INTERACTION=1 \
 
 COPY pyproject.toml poetry.lock README.md ./
 
-RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
+RUN poetry install --no-root --without test && rm -rf $POETRY_CACHE_DIR
 
 # Runtime image, used to just run the code provided its virtual environment
 FROM python:3.12.2-slim as runtime

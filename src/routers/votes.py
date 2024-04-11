@@ -8,7 +8,7 @@ from ..utils import get_record
 router = APIRouter(prefix="/votes", tags=["Votes"])
 
 
-@router.post("/", response_model=schemas.VoteResponse)
+@router.post("", response_model=schemas.VoteResponse)
 def vote(
     vote: schemas.VoteCreate,
     db: Session = Depends(get_db),

@@ -8,10 +8,10 @@ from ..database import get_db
 from ..utils import verify_password
 
 
-router = APIRouter(prefix="/login", tags=["Login"])
+router = APIRouter(prefix="/login", tags=["Authorization"])
 
 
-@router.post("/", response_model=schemas.TokenResponse)
+@router.post("", response_model=schemas.TokenResponse)
 def login(
     credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
 ):
@@ -20,13 +20,13 @@ def login(
     if user_record is None:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Email and Password do not match!",
+            detail="Email and Password do not match!",
         )
 
     if not verify_password(credentials.password, user_record.password):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Email and Password do not match!",
+            detail="Email and Password do not match!",
         )
 
     access_token = oauth2.create_access_token(data={"user_id": user_record.id})

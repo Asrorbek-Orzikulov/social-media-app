@@ -13,7 +13,7 @@ from ..utils import get_record, verify_post_owner
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
 
-@router.get("/", response_model=List[schemas.PostResponse])
+@router.get("", response_model=List[schemas.PostResponse])
 def get_posts(
     db: Session = Depends(get_db),
     limit: int = 10,
@@ -52,9 +52,7 @@ def get_post(
     return {"Post": post, "vote_count": votes}
 
 
-@router.post(
-    "/", status_code=status.HTTP_201_CREATED, response_model=schemas.PostRecord
-)
+@router.post("", status_code=status.HTTP_201_CREATED, response_model=schemas.PostRecord)
 def create_post(
     post: schemas.PostCreate,
     db: Session = Depends(get_db),

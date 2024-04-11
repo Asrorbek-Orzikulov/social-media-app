@@ -1,4 +1,4 @@
-from typing import Optional, Literal
+from typing import Literal
 from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
@@ -30,13 +30,13 @@ class PostResponse(BaseModel):
     vote_count: int
 
 
-class TokenCreate(BaseModel):
-    user_id: Optional[int] = None
+class TokenVerified(BaseModel):
+    user_id: int
 
 
 class TokenResponse(BaseModel):
     access_token: str
-    token_type: str
+    token_type: Literal["bearer"]
 
 
 class VoteCreate(BaseModel):
