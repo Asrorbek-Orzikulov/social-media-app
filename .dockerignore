@@ -19,3 +19,4 @@
 .hypothesis
 .env
 docker-compose.yml
+tests
