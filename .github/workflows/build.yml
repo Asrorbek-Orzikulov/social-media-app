@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     environment:
       name: testing-env
     env:
@@ -20,7 +21,6 @@ jobs:
       OAUTH_SECRET_KEY: ${{ secrets.OAUTH_SECRET_KEY}}
       OAUTH_ALGORITHM: ${{ secrets.OAUTH_ALGORITHM }}
       OAUTH_EXPIRY_MINUTES: ${{ secrets.OAUTH_EXPIRY_MINUTES }}
-
     services:
       postgres:
         image: postgres:alpine3.19
@@ -35,8 +35,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    runs-on: ubuntu-latest
     steps:
       - name: Pull Git repo
         uses: actions/checkout@v4
