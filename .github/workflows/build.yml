@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: testing-env
+    # environment: testing-env
     env:
       DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
       DB_PORT: ${{ secrets.DB_PORT }}
