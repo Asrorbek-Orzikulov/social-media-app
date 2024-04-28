@@ -22,6 +22,11 @@ class Settings(BaseSettings):
     oauth_algorithm: str
     oauth_expiry_minutes: int
 
+    # redis settings
+    redis_host: str = "localhost"
+    redis_port: int
+    redis_password: str
+
     class Config:
         env_file = ".env"
 

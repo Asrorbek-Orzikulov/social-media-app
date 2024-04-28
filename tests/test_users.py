@@ -1,6 +1,7 @@
 import pytest
 
-from src.schemas import UserResponse, TokenResponse
+from src.schemas.users import UserResponse
+from src.schemas.tokens import TokenResponse
 from src.oauth2 import CREDENTIALS_EXCEPTION, verify_access_token
 from tests.constants import USER_1_DATA
 

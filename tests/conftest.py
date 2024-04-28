@@ -1,11 +1,13 @@
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy_utils import database_exists, create_database
 from pytest import fixture
 
 from src.oauth2 import create_access_token
 from src.database.postgres import get_db, Base
-from src.schemas import UserResponse, PostRecord
+from src.schemas.users import UserResponse
+from src.schemas.posts import PostRecord
 from src.main import app
 from tests.constants import (
     TESTING_DATABASE_URL,
@@ -17,6 +19,9 @@ from tests.constants import (
 
 
 test_engine = create_engine(TESTING_DATABASE_URL)
+if not database_exists(test_engine.url):
+    create_database(test_engine.url)
+
 TestSession = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
 

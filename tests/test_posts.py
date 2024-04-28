@@ -1,6 +1,6 @@
 import pytest
 
-from src.schemas import PostRecord
+from src.schemas.posts import PostRecord
 from src.utils import get_record
 from src import models
 from tests.constants import POST_1_DATA, POST_2_DATA, UPDATED_POST_DATA
