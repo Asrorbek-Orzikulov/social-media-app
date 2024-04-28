@@ -4,18 +4,18 @@ from fastapi import status, HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
-from . import models, database
+from src import models, database
 
 pwd_context = CryptContext(schemes=["bcrypt"])
 
 
 def get_record(
     db_session: Session,
-    table: database.Base,
+    table: database.postgres.Base,
     primary_key_name: str | Tuple[str],
     primary_key: int | Tuple[int],
     raise_error: bool = True,
-) -> Optional[database.Base]:
+) -> Optional[database.postgres.Base]:
     if isinstance(primary_key_name, tuple) != isinstance(primary_key, tuple):
         raise ValueError(
             "primary_key_name and primary_key must both be tuples or neither."

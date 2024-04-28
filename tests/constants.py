@@ -5,9 +5,9 @@ from src.config import settings
 # database
 TESTING_DATABASE_URL = URL.create(
     "postgresql+psycopg",
-    username=settings.db_username,
-    password=settings.db_password,
-    host=settings.db_hostname,
+    username=settings.sql_username,
+    password=settings.sql_password,
+    host=settings.sql_hostname,
     database="test-db",
 )
 

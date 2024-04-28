@@ -5,10 +5,11 @@ from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from . import schemas, models
-from .database import get_db
-from .config import settings
-from .utils import get_record
+from src import models
+from src.schemas.tokens import TokenVerified
+from src.database.postgres import get_db
+from src.config import settings
+from src.utils import get_record
 
 
 SECRET_KEY = settings.oauth_secret_key
@@ -34,7 +35,7 @@ def verify_access_token(token: str, credentials_exception: HTTPException):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         user_id = payload.get("user_id")
-        return schemas.TokenVerified(user_id=user_id)
+        return TokenVerified(user_id=user_id)
     except JWTError:
         raise credentials_exception
 

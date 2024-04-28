@@ -5,15 +5,16 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 from fastapi import status, Depends, APIRouter
 
-from ..database import get_db
-from .. import models, schemas, oauth2
-from ..utils import get_record, verify_post_owner
+from src import models, oauth2
+from src.database.postgres import get_db
+from src.utils import get_record, verify_post_owner
+from src.schemas.posts import PostCreate, PostRecord, PostResponse
 
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
 
-@router.get("", response_model=List[schemas.PostResponse])
+@router.get("", response_model=List[PostResponse])
 def get_posts(
     db: Session = Depends(get_db),
     limit: int = 10,
@@ -36,7 +37,7 @@ def get_posts(
     return posts
 
 
-@router.get("/{id}", response_model=schemas.PostResponse)
+@router.get("/{id}", response_model=PostResponse)
 def get_post(
     id: int,
     db: Session = Depends(get_db),
@@ -52,9 +53,9 @@ def get_post(
     return {"Post": post, "vote_count": votes}
 
 
-@router.post("", status_code=status.HTTP_201_CREATED, response_model=schemas.PostRecord)
+@router.post("", status_code=status.HTTP_201_CREATED, response_model=PostRecord)
 def create_post(
-    post: schemas.PostCreate,
+    post: PostCreate,
     db: Session = Depends(get_db),
     current_user: models.User = Depends(oauth2.get_current_user),
 ):
@@ -80,7 +81,7 @@ def delete_post(
 @router.put("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def update_post(
     id: int,
-    post: schemas.PostCreate,
+    post: PostCreate,
     db: Session = Depends(get_db),
     current_user: models.User = Depends(oauth2.get_current_user),
 ):

@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from pytest import fixture
 
 from src.oauth2 import create_access_token
-from src.database import get_db, Base
+from src.database.postgres import get_db, Base
 from src.schemas import UserResponse, PostRecord
 from src.main import app
 from tests.constants import (

@@ -1,4 +1,3 @@
-from icecream import ic
 import pytest
 
 from src.schemas import PostRecord
