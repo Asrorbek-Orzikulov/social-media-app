@@ -19,8 +19,8 @@ from tests.constants import (
 
 
 test_engine = create_engine(TESTING_DATABASE_URL)
-if not database_exists(test_engine.url):
-    create_database(test_engine.url)
+if not database_exists(TESTING_DATABASE_URL):
+    create_database(TESTING_DATABASE_URL)
 
 TestSession = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
