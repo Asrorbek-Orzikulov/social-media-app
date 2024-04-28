@@ -13,14 +13,27 @@ jobs:
     environment:
       name: testing-env
     env:
-      DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_USERNAME: ${{ secrets.DB_USERNAME }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_NAME: ${{ secrets.DB_NAME }}
+      # sql
+      SQL_HOSTNAME: ${{ secrets.SQL_HOSTNAME }}
+      SQL_PORT: ${{ secrets.SQL_PORT }}
+      SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+      SQL_DB_NAME: ${{ secrets.SQL_DB_NAME }}
+      # oauth
       OAUTH_SECRET_KEY: ${{ secrets.OAUTH_SECRET_KEY}}
       OAUTH_ALGORITHM: ${{ secrets.OAUTH_ALGORITHM }}
       OAUTH_EXPIRY_MINUTES: ${{ secrets.OAUTH_EXPIRY_MINUTES }}
+      # mongo
+      MONGO_HOSTNAME: ${{ secrets.MONGO_HOSTNAME }}
+      MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
+      MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+      MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
+      VIDEOS_COLLECTION: ${{ secrets.VIDEOS_COLLECTION }}
+      AUDIOS_COLLECTION: ${{ secrets.AUDIOS_COLLECTION }}
+      # redis
+      REDIS_HOST: ${{ secrets.REDIS_HOST }}
+      REDIS_PORT: ${{ secrets.REDIS_PORT }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
     services:
       postgres:
@@ -28,9 +41,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: ${{ secrets.DB_USERNAME }}
-          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.DB_NAME }}
+          POSTGRES_USER: ${{ secrets.SQL_USERNAME }}
+          POSTGRES_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.SQL_DB_NAME }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
