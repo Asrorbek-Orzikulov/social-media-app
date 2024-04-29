@@ -14,8 +14,8 @@ class Settings(BaseSettings):
     mongo_username: str
     mongo_password: str
     mongo_db_name: str
-    videos_collection: str
-    audios_collection: str
+    mongo_videos_collection: str
+    mongo_audios_collection: str
 
     # oauth settings
     oauth_secret_key: str
@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     redis_host: str = "localhost"
     redis_port: int
     redis_password: str
+    redis_videos_channel: str
+    redis_audios_channel: str
 
     class Config:
         env_file = ".env"

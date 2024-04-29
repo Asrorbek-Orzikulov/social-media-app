@@ -19,21 +19,26 @@ jobs:
       SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
       SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
       SQL_DB_NAME: ${{ secrets.SQL_DB_NAME }}
+
       # oauth
       OAUTH_SECRET_KEY: ${{ secrets.OAUTH_SECRET_KEY}}
       OAUTH_ALGORITHM: ${{ secrets.OAUTH_ALGORITHM }}
       OAUTH_EXPIRY_MINUTES: ${{ secrets.OAUTH_EXPIRY_MINUTES }}
+
       # mongo
       MONGO_HOSTNAME: ${{ secrets.MONGO_HOSTNAME }}
       MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
       MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
       MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
-      VIDEOS_COLLECTION: ${{ secrets.VIDEOS_COLLECTION }}
-      AUDIOS_COLLECTION: ${{ secrets.AUDIOS_COLLECTION }}
+      MONGO_VIDEOS_COLLECTION: ${{ secrets.MONGO_VIDEOS_COLLECTION }}
+      MONGO_AUDIOS_COLLECTION: ${{ secrets.MONGO_AUDIOS_COLLECTION }}
+
       # redis
       REDIS_HOST: ${{ secrets.REDIS_HOST }}
       REDIS_PORT: ${{ secrets.REDIS_PORT }}
       REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+      REDIS_VIDEOS_CHANNEL: ${{ secrets.REDIS_VIDEOS_CHANNEL }}
+      REDIS_AUDIOS_CHANNEL: ${{ secrets.REDIS_AUDIOS_CHANNEL }}
 
     services:
       postgres:
