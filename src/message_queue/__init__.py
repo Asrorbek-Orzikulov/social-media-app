@@ -1,11 +1,16 @@
-import redis.asyncio as redis
+import pika
 
 from src.config import settings
 
-
-queue = redis.Redis(
-    host=settings.redis_host,
-    port=settings.redis_port,
-    password=settings.redis_password,
-    decode_responses=True,
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters(
+        host=settings.rabbit_host,
+        port=settings.rabbit_port,
+        credentials=pika.PlainCredentials(
+            username=settings.rabbit_username,
+            password=settings.rabbit_password,
+            erase_on_connect=True,
+        ),
+    )
 )
+channel = connection.channel()
